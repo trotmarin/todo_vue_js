@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, DeleteView
-from .models import Todo
+from todo.models import Todo
 
 class TodoVueOnlyTV(TemplateView):
     template_name = 'todo/todo_vue_only.html'
@@ -13,11 +13,15 @@ class TodoCV(CreateView):
     success_url = reverse_lazy('todo:list')
 
 class TodoLV(ListView):
-    models = Todo
+    model = Todo
     template_name = 'todo/todo_list.html'
 
+# class TodoDelV(DeleteView):
+#     model = Todo
+#     template_name = 'todo/todo_confirm_delete.html'
+#     success_url = reverse_lazy('todo:list')
+    
 class TodoDelV(DeleteView):
-    modles = Todo
+    model = Todo
     template_name = 'todo/todo_confirm_delete.html'
     success_url = reverse_lazy('todo:list')
-    
